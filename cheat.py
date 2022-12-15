@@ -14,10 +14,7 @@ def remove_chastisements(schoolkid):
 
 
 def choose_subject_title(schoolkid):
-    titles = []
-    for subject in Subject.objects.filter(year_of_study=schoolkid.year_of_study):
-        titles.append(subject.title)
-    return random.choice(titles)
+    return random.choice(Subject.objects.filter(year_of_study=schoolkid.year_of_study)).title
 
 
 def choose_commendation():
