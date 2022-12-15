@@ -6,11 +6,7 @@ from datacenter.models import (Schoolkid, Mark, Chastisement,
 
 
 def fix_marks(schoolkid, bad_marks=[2, 3], good_mark=5):
-    marks = Mark.objects.filter(schoolkid=schoolkid)
-    marks_to_fix = marks.filter(points__in=bad_marks)
-    for mark in marks_to_fix:
-        mark.points = good_mark
-        mark.save()
+    Mark.objects.filter(schoolkid=schoolkid).filter(points__in=bad_marks).update(points=good_mark)
 
 
 def remove_chastisements(schoolkid):
