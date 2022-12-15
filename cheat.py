@@ -6,16 +6,15 @@ from datacenter.models import (Schoolkid, Mark, Chastisement,
 
 
 def fix_marks(schoolkid, bed_marks=[2, 3], good_mark=5):
-    schoolkid_marks = Mark.objects.filter(schoolkid=schoolkid)
-    marks_to_fix = schoolkid_marks.filter(points__in=bed_marks)
+    marks = Mark.objects.filter(schoolkid=schoolkid)
+    marks_to_fix = marks.filter(points__in=bed_marks)
     for mark in marks_to_fix:
         mark.points = good_mark
         mark.save()
 
 
 def remove_chastisements(schoolkid):
-    schoolkid_chastisements = Chastisement.objects.filter(schoolkid=schoolkid)
-    schoolkid_chastisements.delete()
+    Chastisement.objects.filter(schoolkid=schoolkid).delete()
 
 
 def choose_subject_title(schoolkid):
