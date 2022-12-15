@@ -5,9 +5,9 @@ from datacenter.models import (Schoolkid, Mark, Chastisement,
                                 Lesson, Subject, Commendation, Teacher)
 
 
-def fix_marks(schoolkid, bed_marks=[2, 3], good_mark=5):
+def fix_marks(schoolkid, bad_marks=[2, 3], good_mark=5):
     marks = Mark.objects.filter(schoolkid=schoolkid)
-    marks_to_fix = marks.filter(points__in=bed_marks)
+    marks_to_fix = marks.filter(points__in=bad_marks)
     for mark in marks_to_fix:
         mark.points = good_mark
         mark.save()
